@@ -1,0 +1,21 @@
+
+<ion-content padding>
+
+
+
+      <button ion-button block expand="block" color="danger" (click)="google()" *ngIf="!userProfile">
+        <ion-icon name="logo-googleplus"></ion-icon>
+        Login with Google
+      </button>
+
+      <button ion-button block expand="block" color="primary" (click)="facebook()" *ngIf="!userProfile">
+        <ion-icon name="logo-facebook"></ion-icon>
+        Login with Facebook
+        <!-- <ion-spinner></ion-spinner> -->
+      </button>
+
+
+
+
+
+</ion-content>

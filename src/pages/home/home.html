@@ -1,0 +1,49 @@
+
+
+
+<ion-header>
+
+  <ion-navbar text-center>
+      <ion-row>
+          <ion-col>
+            <ion-avatar *ngIf="userProfile" id="jj" menuToggle start no-lines>
+              <img [src]="userProfile.photoURL">
+
+            </ion-avatar>
+
+
+          </ion-col>
+          <ion-col>
+              <ion-title  style="margin-right:40px;" text-center> <img style="height: 40px;" [src]="'assets/img/logo.png'"></ion-title>
+            </ion-col>
+        </ion-row>
+
+
+
+  </ion-navbar>
+
+</ion-header>
+
+
+
+<ion-content padding>
+  <!-- <h2>Hello {{lastName}}, -->
+    <h2>Hello {{userProfile.displayName}},
+  </h2>
+  <p>Welcome to our consultation platform with Keti</p>
+
+
+    <div>
+
+      <ion-item style="background: transparent;"  no-lines>
+          <button ion-button round small padding *ngFor="let p of pages" (click)="openPage(p)" >
+
+            Consult
+            <ion-icon  class="chatboxes" name="chatboxes"></ion-icon>
+
+          </button>
+
+    </ion-item>
+    </div>
+
+</ion-content>

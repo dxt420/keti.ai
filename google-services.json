@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "885878744432",
+    "firebase_url": "https://chanjia-e9ddb.firebaseio.com",
+    "project_id": "chanjia-e9ddb",
+    "storage_bucket": "chanjia-e9ddb.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:885878744432:android:f4095a97f21b70f4",
+        "android_client_info": {
+          "package_name": "com.ai.keti"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "885878744432-s3396u2cbag3o4d3jgc0migfvev3dgh9.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.ai.keti",
+            "certificate_hash": "333c89f0331040e72c105b790985645ef37fa710"
+          }
+        },
+        {
+          "client_id": "885878744432-atrqecvsc6aou4s9bj7i76is20ece0mv.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCQQMjdt7ZoVCPCDpYzHsXchNuiQIfS6tg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "885878744432-jjoj6v395rjlgiadtbl8erp2t63383vd.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "885878744432-258orgo7oe47is8u44t5jaa6s4u115v2.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.ai.keti"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
