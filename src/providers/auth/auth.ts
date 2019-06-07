@@ -58,6 +58,9 @@ export class AuthProvider {
           this.ttoken = token;
 
        });
+
+
+
         console.log(user);
 
         this.user = user;
@@ -84,6 +87,33 @@ export class AuthProvider {
         .then(success => {
 
           console.log("Firebase success: " + JSON.stringify(success));
+
+          if (success.additionalUserInfo.isNewUser) {
+            var ref = firebase.database().ref().child("users");
+            var data = {
+              email: success.additionalUserInfo.profile['email'],
+              firstName: success.additionalUserInfo.profile['first_name'],
+              lastName: success.additionalUserInfo.profile['last_name'],
+
+              imageurl: success.additionalUserInfo.profile['picture'].data.url,
+              // gender: success.gender,
+
+              // notifyId: this.notifyId,
+              // fcmtoken: this.ttoken,
+              id: success.user.uid,
+
+
+
+            }
+            ref.child(success.user.uid).set(data).then(function (ref) {//use 'child' and 'set' combination to save data in your own generated key
+              console.log("Saved");
+
+            }, function (error) {
+              console.log(error);
+            });
+
+
+          }
 
 
 
@@ -140,7 +170,9 @@ export class AuthProvider {
 
               // notifyId: this.notifyId,
               // fcmtoken: this.ttoken,
-              id: success.user.uid
+              id: success.user.uid,
+
+
 
             }
             ref.child(success.user.uid).set(data).then(function (ref) {//use 'child' and 'set' combination to save data in your own generated key
@@ -156,6 +188,7 @@ export class AuthProvider {
 
 
         })
+
         .catch((error) => {
 
           console.log("Firebase failure: " + error);
@@ -164,14 +197,23 @@ export class AuthProvider {
     }).catch((error) => {
 
       console.log(error)
+      // if(error.errorCode=='4201'){
+
+      // }
+
+
       if(error.errorCode=='4201'){
-        this.loading.dismissAll();
+
       }
+
+
+      this.loading.dismissAll();
     });
 
 
     this.loading.dismissAll();
   }
+
 
 
 
@@ -200,8 +242,10 @@ export class AuthProvider {
         this.user = null;
 
       })
-      .catch(e => { console.log('Error logout from Google', e);  });
-      this.loading.dismissAll();
+      .catch(e => {
+        this.loading.dismissAll();
+        console.log('Error logout from Google', e);  });
+
 
   }
 

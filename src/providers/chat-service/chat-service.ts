@@ -1,5 +1,5 @@
 import { PusherServiceProvider } from './../pusher-service/pusher-service';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
@@ -8,40 +8,49 @@ export class ChatServiceProvider {
 
   // private _url = 'http://localhost:5000';
   // private _url = 'https://keti-server.herokuapp.com/';
-  private _url = 'https://keti-server-v2.herokuapp.com';
+  // private _url = 'https://keti-server-v2.herokuapp.com';
+
+// this is the new one
+
+// dont forget to change port in servre
+  private _url = 'https://keti-server.herokuapp.com';
+  // private _url2 = 'https://keti-server-v2.herokuapp.com';
 
 
 
 
   private _channel : any;
+
   constructor(public http: HttpClient, private _pusher : PusherServiceProvider) {
     this._channel = this._pusher.getPusher().subscribe('chat-bot');
   }
 
 
-  sendMessage( message : string) : Observable<any>{
+  sendMessageConsult( message : string) : Observable<any>{
     const param = {
       type: 'human',
       message,
     };
-    var headerDict = {
 
-      'Access-Control-Allow-Origin':'*',
-      'Access-Control-Allow-Methods': 'POST',
-      'Authorization': 'Bearer 203aff72bf9942ea8bbea2a1d47166b1',
-      'rejectUnauthorized': 'false'
+    return this.http.post(`${this._url}/messageConsult`, param)
+  }
+
+  sendMessageResults( message : string) : Observable<any>{
+    const param = {
+      type: 'human',
+      message,
     };
 
-    var requestOptions = {
-      headers: new HttpHeaders(headerDict)
+    return this.http.post(`${this._url}/messageResults`, param)
+  }
+
+  sendMessageRefer( message : string) : Observable<any>{
+    const param = {
+      type: 'human',
+      message,
     };
 
-    // i think putting a sleep here and gif loader is perfect
-    // i think putting a sleep here and gif loader is perfect
-    // i think putting a sleep here and gif loader is perfect
-    // i think putting a sleep here and gif loader is perfect
-    // i think putting a sleep here and gif loader is perfect
-    return this.http.post(`${this._url}/message`, param)
+    return this.http.post(`${this._url}/messageRefer`, param)
   }
   getChannel(){
     return this._channel;

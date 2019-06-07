@@ -1,4 +1,15 @@
-page-home {
+page-chat-consult {
+
+
+  .back-button.show-back-button {
+    display: inline-block;
+    width: 10px;
+}
+
+
+
+
+
   .flex-items{
     display:  flex;
     background-color: #fff;
@@ -73,6 +84,18 @@ page-home {
   background: #ccc;
   border-radius: 0px 5px 5px 5px;
   float: left;
+  padding-right: 25px;
+  margin-left: 3px;
+  clear:none;
+}
+
+.message.avatar1 {
+
+  border-radius: 50%;
+  float: left;
+  margin-top: -13px;
+  width: 40px;
+  height: 40px;
 }
 
 .message.received:after {

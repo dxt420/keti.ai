@@ -1,0 +1,228 @@
+
+
+  <ion-header>
+      <ion-navbar text-center>
+        <ion-title>Interpretation</ion-title>
+      </ion-navbar>
+    </ion-header>
+
+
+
+
+  <ion-content padding>
+    <div class="chats">
+      <div [@listAnimation]="chats.length" class="chatbox">
+        <div *ngFor="let chat of chats; let i = index">
+          <div class="message sent" *ngIf="chat.type!=='bot' && chat.isMe">
+            {{chat.message}}
+            <span class="metadata">
+              <span style="font-size:90%;color:gray" class="time"><br>{{chat.createdAt | date: 'HH:mm aaa'}}</span>
+            </span>
+          </div>
+          <!-- <div class="message received"  *ngIf="chat.type =='bot' && !chat.isMe && (chats.length - i) <= 1">
+                  {{chat.message}}
+                  <span class="metadata">
+                    <span  style="font-size:90%;color:#b20909" class="time"><br>{{chat.createdAt | date: 'HH:mm aaa'}} </span>
+                  </span>
+                </div>
+                <div class="message received"  *ngIf="chat.type =='bot' && !chat.isMe && tt && (chats.length - i) == 1">
+                  <img style="height: 20px; width:40px" [src]="'assets/img/gifs/typing.gif'">
+
+                </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- <div class="message received" *ngIf="chat.type =='bot' && !chat.isMe && chat.kind == 'ZERO'">
+            {{chat.message}}
+
+            <span class="metadata">
+              <span style="font-size:90%;color:#b20909" class="time"><br>{{chat.createdAt | date: 'HH:mm aaa'}} <ion-icon
+                  (click)="playText(chat.message)" style="position:absolute;font-size:20px;right:15px;bottom:8px"
+                  name="play"></ion-icon></span>
+
+            </span>
+
+          </div> -->
+
+  <div  *ngIf="chat.type =='bot' && !chat.isMe && chat.kind == 'ZERO'">
+
+      <div style="list-style-type: none" *ngFor="let m of chat.messages">
+
+          <div class="message avatar1">
+              <ion-avatar>
+                  <img style="border-radius:50%" [src]="'assets/img/1.png'"  />
+              </ion-avatar>
+          </div>
+
+          <div class="message received">
+            {{m.speech}}
+
+
+            <span class="metadata">
+              <span style="font-size:90%;color:#b20909" class="time"><br>{{chat.createdAt | date: 'HH:mm aaa'}} <ion-icon
+                  (click)="playText(m.speech)" style="position:absolute;font-size:20px;right:15px;bottom:8px"
+                  name="play"></ion-icon></span>
+
+            </span>
+
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <!-- THIS IS FOR  WHEN I PUT BACK SELF TEST KIT OPTION -->
+          <!-- THIS IS FOR  WHEN I PUT BACK SELF TEST KIT OPTION -->
+          <!-- THIS IS FOR  WHEN I PUT BACK SELF TEST KIT OPTION -->
+          <!-- THIS IS FOR  WHEN I PUT BACK SELF TEST KIT OPTION -->
+          <!-- THIS IS FOR  WHEN I PUT BACK SELF TEST KIT OPTION -->
+          <!-- THIS IS FOR  WHEN I PUT BACK SELF TEST KIT OPTION -->
+
+
+          <!-- <div class="message received"  *ngIf="chat.type =='bot' && !chat.isMe && chat.kind == 'ONE'">
+
+                    {{chat.extra.title}}
+                    <ion-card onclick="window.open('https://www.cdarh.org/product.html','_system', 'location=yes')" style="background: transparent">
+                        <img src="{{chat.extra.imageUrl}}" />
+                        <ion-card-content>
+
+                          <p>
+                            Click to view guidelines
+                          </p>
+                        </ion-card-content>
+                      </ion-card>
+
+
+
+                    <span class="metadata">
+                      <span  style="font-size:90%;color:#b20909" class="time"><br>{{chat.createdAt | date: 'HH:mm aaa'}}  <ion-icon (click)="playText(chat.message)" style="position:absolute;font-size:20px;right:15px;bottom:8px" name="play"  ></ion-icon></span>
+
+                    </span>
+
+                  </div> -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+          <div class="message received" *ngIf="chat.type =='bot' && !chat.isMe && chat.kind == 'ONE'">
+
+            {{chat.extra.title}}
+
+            <ion-card
+              onclick="window.open('https://www.google.com/maps?saddr=My+Location&daddr=0.3113649,32.5826697','_system', 'location=yes')"
+              style="background: transparent">
+
+              <img src="https://i0.wp.com/www.techjaja.com/wp-content/uploads/2017/12/IHK.jpg?resize=696%2C464&ssl=1">
+
+
+              <ion-item style="background: transparent">
+
+                <h2>International Hospital Kampala</h2>
+                <p>Kampala</p>
+              </ion-item>
+
+
+              <ion-item style="background: transparent">
+
+                <button ion-button clear>
+
+                  Get Directions
+                </button>
+              </ion-item>
+
+            </ion-card>
+
+
+            <ion-card
+              onclick="window.open('https://www.google.com/maps?saddr=My+Location&daddr=0.3413731,32.5775858','_system', 'location=yes')"
+              style="background: transparent">
+
+              <img src="https://www.independent.co.ug/wp-content/uploads/2017/08/cancer.jpg">
+
+              <ion-item style="background: transparent">
+
+                <h2>Uganda Cancer Institute</h2>
+                <p>Kampala</p>
+              </ion-item>
+
+
+              <ion-item style="background: transparent">
+
+                <button ion-button clear>
+
+                  Get Directions
+                </button>
+              </ion-item>
+
+            </ion-card>
+
+
+
+
+
+            <!-- <ion-icon (tap)="chat.message" style="font-size:30px;padding-left:0px;" name="menu"></ion-icon> -->
+
+
+            <!-- playText(chat.message) -->
+            <span class="metadata">
+              <span style="font-size:90%;color:#b20909" class="time"><br>{{chat.createdAt | date: 'HH:mm aaa'}} </span>
+
+            </span>
+
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <ion-footer>
+      <p text-center *ngIf="sending">sending...</p>
+      <div class="flex-items" padding>
+
+        <ion-input style="color:black" [(ngModel)]="message" name="message" class="input_message"
+          placeholder="send message ..."></ion-input>
+        <ion-icon (click)="sendMessage()" class="send" name="send"></ion-icon>
+        <ion-icon (click)="startVoice()" class="send" name="mic"></ion-icon>
+
+
+      </div>
+    </ion-footer>
+  </ion-content>

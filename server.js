@@ -35,11 +35,12 @@ const firebaseConfig = {
 
 }
 
+admin.initializeApp(firebaseConfig)
 
 
 
 
-
+// var app = new WebhookClient({ request, response });
 
 app.use(cors())
 
@@ -50,10 +51,10 @@ app.use(bodyParser.urlencoded({
 app.use(bodyParser.json())
 
 
-admin.initializeApp(firebaseConfig)
+
 
 // Required by Firebase
-exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app);
+// exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app);
 
 
 var uid
@@ -110,62 +111,96 @@ app.post('/getUser', (req, res) => {
 
 })
 
+app.post('/message', dialogFlowApp);
+// app.post('/message', async (req, res) => {
+//   // simulate actual db save with id and createdAt added
+//   console.log(req.body.queryResult.fulfillmentMessages[0]);
 
-app.post('/message', async (req, res) => {
-  // simulate actual db save with id and createdAt added
-  console.log(req);
-  const chat = {
-    ...req.body,
-    id: shortId.generate(),
-    createdAt: new Date().toISOString()
-  }
-  //update pusher listeners
-  pusher.trigger('chat-bot', 'chat', chat)
+//   // const action = req.body.queryResult.queryText;
 
-  const message = chat.message;
-
-  const response = await dialogFlow.send(message);
-  //console.log(response.data);
-  //console.log(response.data.result);
-  //console.log(response.data.result.fulfillment);
-
-  console.log(response.data.result.fulfillment.messages[0]);
-  console.log(response.data.result.fulfillment.messages);
-  console.log(response.data.result.fulfillment.messages[0].type);
+//   console.log("--------------------------------");
+//   // console.log("Action =>", action);
+//   console.log("--------------------------------");
 
 
-  if (response.data.result.fulfillment.messages[0].type == 1) {
-    // trigger this update to our pushers listeners
-    pusher.trigger('chat-bot', 'chat', {
-
-      message: `${response.data.result.fulfillment.speech}`,
-      extra: response.data.result.fulfillment.messages[0],
-      type: 'bot',
-      kind: 'ONE',
-      createdAt: new Date().toISOString(),
-      id: shortId.generate()
-    })
-
-
-  } else {
-    // trigger this update to our pushers listeners
-    pusher.trigger('chat-bot', 'chat', {
-
-      message: `${response.data.result.fulfillment.speech}`,
-      type: 'bot',
-      kind: 'ZERO',
-      createdAt: new Date().toISOString(),
-      id: shortId.generate()
-    })
-
-  }
+//   console.log("--------------------------------");
+//   console.log("User Text =>", req.body.queryResult.queryText);
+//   console.log("--------------------------------");
 
 
 
-  res.send(chat)
+
+//   const chat = {
+//     ...req.body,
+//     id: shortId.generate(),
+//     createdAt: new Date().toISOString()
+//   }
+
+//   // console.log();
+//   // console.log("chat =>", chat);
+//   console.log("--------------------------------");
+//   console.log("Chat Object =>", chat);
+//   console.log("--------------------------------");
+
+//   //update pusher listeners
+//   pusher.trigger('chat-bot', 'chat', chat)
+
+//   const message = req.body.queryResult.queryText;
+//   // console.log(message);
+//   const response = await dialogFlow.send(message);
+//   //console.log(response.data);
+//   //console.log(response.data.result);
+//   //console.log(response.data.result.fulfillment);
 
 
-})
+//   console.log("--------------------------------");
+//   console.log("Dialogflow Response =>", response.data);
+//   console.log("--------------------------------");
 
-app.listen(process.env.PORT, () => console.log('Listening at port' + process.env.PORT))
-exports.dialogflowFirebaseFulfillment = functions.https.onRequest(dialogFlowApp);
+
+//   // console.log(req.body.queryResult.fulfillmentMessages[0]);
+
+//   // console.log(response.data.result.fulfillment.messages[0]);
+//   // console.log(response.data.result.fulfillment);
+//   // console.log(response.data.result.fulfillment.messages[0].type);
+
+
+//   if (response.data.result.fulfillment.messages[0].type == 1) {
+//     // trigger this update to our pushers listeners
+//     pusher.trigger('chat-bot', 'chat', {
+
+//       message: `${response.data.result.fulfillment.speech}`,
+//       extra: response.data.result.fulfillment.messages[0],
+//       type: 'bot',
+//       kind: 'ONE',
+//       createdAt: new Date().toISOString(),
+//       id: shortId.generate()
+//     })
+
+
+//   } else {
+//     // trigger this update to our pushers listeners
+//     pusher.trigger('chat-bot', 'chat', {
+
+//       message: `${response.data.result.fulfillment.speech}`,
+//       type: 'bot',
+//       kind: 'ZERO',
+//       createdAt: new Date().toISOString(),
+//       id: shortId.generate()
+//     })
+
+//   }
+
+
+
+//   res.send(chat);
+
+
+// })
+
+// app.listen(process.env.PORT, () => console.log('Listening at port' + process.env.PORT))
+app.listen('5000', () => console.log('Listening at port 5000'))
+
+exports.dialogflowFirebaseFulfillment = functions.https.onRequest(app);
+
+

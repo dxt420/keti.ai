@@ -1,4 +1,6 @@
-import { NgModule, ErrorHandler } from '@angular/core';
+import { InterpretePage } from './../pages/interprete/interprete';
+
+import { NgModule, ErrorHandler, enableProdMode } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { IonicApp, IonicModule, IonicErrorHandler } from 'ionic-angular';
 import { MyApp } from './app.component';
@@ -37,6 +39,15 @@ import firebase from 'firebase';
 import { FCM } from '@ionic-native/fcm';
 import { ChatServiceProvider } from '../providers/chat-service/chat-service';
 import { PusherServiceProvider } from '../providers/pusher-service/pusher-service';
+import { DataProvider } from '../providers/data/data';
+import { EmailComposer } from '@ionic-native/email-composer';
+
+import { Network } from '@ionic-native/network';
+import { NetworkProvider } from '../providers/network/network';
+import { ChatResultsPage } from '../pages/chat-results/chat-results';
+
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
 
 // import { IonTextAvatar } from 'ionic-text-avatar';
 
@@ -49,6 +60,8 @@ firebase.initializeApp({
   messagingSenderId: "885878744432"
 });
 
+
+
 @NgModule({
   declarations: [
     MyApp,
@@ -58,16 +71,23 @@ firebase.initializeApp({
     TabsPage,
     AuthPage,
 
-    NotificationsPage,
+    InterpretePage,
+
+    NotificationsPage
 
 
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp,{
+      tabsHideOnSubPages: true
+    }),
     CacheModule,
     HttpClientModule,
     IonicStorageModule.forRoot(),
+    BrowserAnimationsModule
+
+
     // HttpModule
 
   ],
@@ -79,6 +99,8 @@ firebase.initializeApp({
     HomePage,
     TabsPage,
     AuthPage,
+
+    InterpretePage,
 
     NotificationsPage,
 
@@ -98,6 +120,13 @@ firebase.initializeApp({
     SpeechRecognition,
     // InAppBrowser,
     TextToSpeech,
+    DataProvider,
+    EmailComposer,
+    Network,
+    NetworkProvider
+
   ]
 })
 export class AppModule {}
+
+enableProdMode();

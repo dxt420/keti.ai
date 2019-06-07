@@ -1,3 +1,61 @@
 page-auth {
+  .logo img {
+      height: 150%;
+      // width:
+  }
+  #jj img {
+      height: 100px;
+      width: 100px;
+  }
+  #jj {
+      width: 40%;
+      margin-left: 35%;
+      // height: 100px;
+  }
+  .transparent {
+      // background-color: #00b7ff60;
+      background-size: cover;
+      background-repeat: no-repeat;
+  }
+  ion-title {
+      margin-right: 20%;
+  }
+  ion-input::placeholder {
+      color: black;
+  }
+  ion-select::placeholder {
+      color: black;
+  }
+  ion-label {
+      color: black;
+  }
+
+  ion-content {
+    background-image: url('../assets/img/cell2.gif');
+    background-repeat: no-repeat;
+
+    background-size: 110% 110%;
+    background-position: center center;
+    animation: shrink 5s infinite alternate;
+}
+@keyframes shrink {
+  0% {
+    background-size: 110% 110%;
+
+  }
+  100% {
+    background-size: 100% 100%;
+
+  }
+}
+
+.item-md {
+ // background-color: #40718500;
+}
+
+ion-input {
+  //border: 1px solid #00b7ff21;
+}
 
 }
+

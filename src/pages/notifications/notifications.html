@@ -1,26 +1,43 @@
 
-
 <ion-header>
 
-    <ion-navbar text-center>
+  <ion-navbar text-center>
       <ion-row>
-        <ion-col>
-          <ion-avatar id="jj" menuToggle start no-lines>
-            <img src="assets/imgs/favicon.png">
-          </ion-avatar>
-        </ion-col>
-        <ion-col>
-          <ion-title> Notifications</ion-title>
-        </ion-col>
-      </ion-row>
+          <ion-col>
+            <ion-avatar *ngIf="userProfile" id="jj" menuToggle start no-lines>
+              <img [src]="userProfile.photoURL">
 
-    </ion-navbar>
-
-  </ion-header>
+            </ion-avatar>
 
 
-    <ion-title text-center style="margin-right: 0 !important;">Delegates</ion-title>
+          </ion-col>
+          <ion-col>
+              <ion-title  style="margin-right:40px;" text-center>
+                Prescription Guide
+              </ion-title>
+            </ion-col>
+        </ion-row>
+
+
+
+  </ion-navbar>
+
+</ion-header>
+
+
 
 <ion-content padding>
+
+    <div text-center>
+        💫About this Feature💫
+    </div>
+
+    <div text-center>
+        <p text-center>{{aa}}</p>
+    </div>
+
+
+
+
 
 </ion-content>

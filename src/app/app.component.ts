@@ -14,10 +14,14 @@ import { AuthPage } from '../pages/auth/auth';
 import { Storage } from '@ionic/storage';
 
 
-import { Push, PushObject, PushOptions } from '@ionic-native/push';
+import { Push } from '@ionic-native/push';
 import { AppUpdate } from '@ionic-native/app-update';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 // import { AuthProvider } from '../providers/auth/auth';
+
+import { Network } from '@ionic-native/network';
+import { NetworkProvider } from '../providers/network/network';
+
 
 @Component({
   selector: 'page-menu',
@@ -34,6 +38,12 @@ export class MyApp {
   public userProfile;
   initials;
   userToken;
+  public isConnected:boolean = true;
+
+
+
+
+
 
   constructor(public auth: AuthProvider,
               public platform: Platform,
@@ -45,7 +55,12 @@ export class MyApp {
               public fcm: FCM,
               public alertCtrl:AlertController,
               private appUpdate: AppUpdate,
-              public http: HttpClient,  ) {
+              public http: HttpClient,
+              public network: Network ,
+
+              public networkProvider: NetworkProvider ) {
+
+
 
                 // this.userProfile = this.auth.userProfile;
                 // this.initials = this.userProfile.displayName.charAt(0) + "";
@@ -72,6 +87,29 @@ export class MyApp {
 
       // });
 
+      this.networkProvider.initializeNetworkEvents();
+
+                // Offline event
+                this.events.subscribe('network:offline', () => {
+                    alert('You have been disconnected from the internet');
+                });
+
+                // Online event
+                this.events.subscribe('network:online', () => {
+                    alert('You are connected');
+                });
+
+
+
+      this.appUpdate.checkAppUpdate('http://cdarh.org/keti.xml').then(() => {
+        console.log('Update available');
+        // this.fcm.subscribeToTopic('update');
+      }).catch((error) => {
+
+        console.log("Update Check failure: " + error);
+
+      });
+
 
 
 
@@ -82,7 +120,23 @@ export class MyApp {
           this.userProfile = user;
           this.initials = this.userProfile.displayName.charAt(0) + "";
 
-          this.rootPage = TabsPage;
+
+
+
+        // if(firebase.database().ref().child("users").child(user.uid).child("profile")){
+
+        //   this.rootPage = AboutPage;
+
+        // }else{
+
+        //   this.rootPage = TabsPage;
+
+        // }
+
+        this.rootPage = TabsPage;
+
+
+
           this.fcm.getToken().then(token => {
             // Your best bet is to here store the token on the user's profile on the
             // Firebase database, so that when you want to send notifications to this
@@ -121,7 +175,7 @@ export class MyApp {
 
 
 
-                return this.http.post('https://keti-server-v2.herokuapp.com/getUser',{}, requestOptions).toPromise()
+                return this.http.post('https://keti-server.herokuapp.com/getUser',{}, requestOptions).toPromise()
 
 
               })
@@ -139,16 +193,21 @@ export class MyApp {
 
 
       this.pages1 = [
-        // { title: 'Speakers', component: 'SpeakersPage', icon: "microphone" },
-        // { title: 'Sponsors', component: 'SponsorsPage', icon: "logo-usd" }
+
 
 
       ]
       this.pages = [
-     
-        { title: 'Send Feedback', component: 'FeedbackPage', icon: "chatboxes" },
+
+        // { title: 'Send Feedback', component: 'FeedbackPage', icon: "chatboxes" },
+        { title: 'Counselling', component: 'CounsellingPage', icon: "happy" },
+        { title: 'Referral', component: 'ReferralPage', icon: "git-compare" },
+        { title: 'Prescription', component: 'PrescriptionPage', icon: "medkit" },
+        { title: 'Call Me', component: 'CallPage', icon: "call" },
+
         { title: 'Settings', component: 'SettingsPage', icon: "settings" },
         { title: 'About', component: 'AboutPage', icon: "information-circle" },
+
 
 
       ]
@@ -179,28 +238,7 @@ export class MyApp {
       if (data.wasTapped) {
         //Notification was received on device tray and tapped by the user.
         console.log(JSON.stringify(data));
-        if (data.update == "SOFTWARE_UPDATE") {
-          // Alert Updates
-          // this._alertUpdateVersion(data.title, data.message);
 
-          let alert = this.alertCtrl.create({
-            title: data.title,
-            message: data.body,
-            buttons: [
-              {
-                text: 'Update',
-                cssClass: "alert-update",
-                handler: () => {
-                  this.appUpdate.checkAppUpdate('http://cdarh.org/abc.xml').then(() => {
-                    console.log('Update available');
-                  });
-                }
-              }
-            ]
-          });
-
-          alert.present();
-      }else{
 
         let alert = this.alertCtrl.create({
           title: data.title,
@@ -215,7 +253,7 @@ export class MyApp {
 
         alert.present();
 
-      }
+
 
         // this.nav.setRoot('NotificationsPage', { profileId: data.profileId });
       } else {
