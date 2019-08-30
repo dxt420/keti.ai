@@ -63,16 +63,11 @@
               </ion-avatar>
           </div>
 
-          <div class="message received">
+          <div (click)="playText(m.speech)" class="message received">
             {{m.speech}}
 
 
-            <span class="metadata">
-              <span style="font-size:90%;color:#b20909" class="time"><br>{{chat.createdAt | date: 'HH:mm aaa'}} <ion-icon
-                  (click)="playText(m.speech)" style="position:absolute;font-size:20px;right:15px;bottom:8px"
-                  name="play"></ion-icon></span>
-
-            </span>
+           
 
           </div>
         </div>

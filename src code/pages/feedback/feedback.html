@@ -1,0 +1,44 @@
+
+
+<ion-header>
+
+    <ion-navbar text-center>
+
+          <ion-title>Feedback</ion-title>
+
+
+    </ion-navbar>
+
+  </ion-header>
+
+<ion-content padding>
+
+    <div style="border-radius:10px;" class="transparent" text-center>
+        <form (ngSubmit)="send()" [formGroup]="form">
+
+
+          <ion-item style="background-color: transparent"  no-lines>
+
+                  <ion-label position="floating">Write to Us</ion-label>
+                  <ion-textarea formControlName="feedbacktext"></ion-textarea>
+         </ion-item>
+
+
+
+
+    <br>
+
+
+
+          <div text-center>
+            <button style="padding:20px;" ion-button type="submit" color="success">
+              Send
+            </button>
+          </div>
+
+
+        </form>
+
+      </div>
+
+</ion-content>

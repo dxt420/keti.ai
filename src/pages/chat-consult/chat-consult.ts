@@ -7,6 +7,7 @@ import {TextToSpeech} from '@ionic-native/text-to-speech';
 import { trigger, transition, style, animate, query, stagger } from '@angular/animations';
 import { DataProvider } from '../../providers/data/data';
 
+
 /**
  * Generated class for the ChatConsultPage page.
  *
@@ -165,21 +166,7 @@ export class ChatConsultPage {
       } );
   }
 
-  sendMessageX(aa) {
-    this.sending = true;
-    this._chat.sendMessageResults(aa)
-      .subscribe(resp => {
-        this.message = '';
-        this.sending = false;
-        this.tt = true;
-        setTimeout(() => {
-          console.log('Test');
-          this.tt = false;
-      }, 2000);
-      }, err => {
-        this.sending = false;
-      } );
-  }
+
 
   sendVoiceMessage(message) {
     this.sending = true;

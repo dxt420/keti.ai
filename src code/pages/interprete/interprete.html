@@ -1,0 +1,52 @@
+
+
+<ion-header>
+    <ion-navbar text-center>
+
+
+      <ion-row>
+        <ion-col>
+          <ion-avatar *ngIf="userProfile" id="jj" menuToggle start no-lines>
+            <img [src]="userProfile.photoURL">
+
+          </ion-avatar>
+
+
+        </ion-col>
+        <ion-col>
+            <ion-title style="margin-right:40px;" text-center>Interpretation of Results</ion-title>
+          </ion-col>
+      </ion-row>
+
+    </ion-navbar>
+  </ion-header>
+
+
+
+  <ion-content padding>
+      <div text-center>
+          <img style="height:10vh" [src]="'assets/img/logo.png'"  />
+        </div>
+        <div text-center padding><h2>{{ timedGreeting }} <br> {{userProfile.displayName}}
+          </h2></div>
+        <div text-center padding><p>{{aa}}</p></div>
+
+
+
+
+      <div text-center>
+
+        <ion-item text-center style="background: transparent;"  no-lines>
+            <button text-center ion-button round small *ngFor="let p of pages" (click)="openPage(p)" >
+
+              {{bb}}
+
+
+            </button>
+
+      </ion-item>
+      </div>
+
+  </ion-content>
+
+

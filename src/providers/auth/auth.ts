@@ -11,30 +11,6 @@ import { FCM } from '@ionic-native/fcm';
 @Injectable()
 export class AuthProvider {
 
-
-  //  additional fiekds
-
-  // birthday
-  // sex
-  // phone
-  // country
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // public userProfile:any = null;
   public user: firebase.User;
   public loading: any;
 
@@ -81,7 +57,7 @@ export class AuthProvider {
     this.loading.present();
     this.googlePlus.login({
       'webClientId': '885878744432-atrqecvsc6aou4s9bj7i76is20ece0mv.apps.googleusercontent.com',
-      'offline': true
+      'offline': false
     }).then(res => {
       firebase.auth().signInWithCredential(firebase.auth.GoogleAuthProvider.credential(res.idToken))
         .then(success => {
@@ -218,7 +194,7 @@ export class AuthProvider {
 
 
 
-  logout() {
+  logoutFacebook() {
     this.loading = this.loadingCtrl.create({ content: "Logging Out" });
     this.loading.present();
 
@@ -230,22 +206,24 @@ export class AuthProvider {
         console.log('Logged Out');
       })
       .catch(e => {
+        this.loading.dismissAll();
         console.log('Error logout from innner Facebook', e);
 
 
       });
 
 
-    this.googlePlus.logout()
-      .then(res => {
-        firebase.auth().signOut();
-        this.user = null;
 
-      })
-      .catch(e => {
-        this.loading.dismissAll();
-        console.log('Error logout from Google', e);  });
 
+
+  }
+
+  logoutGoogle() {
+    this.loading = this.loadingCtrl.create({ content: "Logging Out" });
+    this.loading.present();
+
+    firebase.auth().signOut();
+    this.loading.dismissAll();
 
   }
 

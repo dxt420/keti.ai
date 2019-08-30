@@ -1,39 +1,30 @@
 <ion-menu [content]="content">
+  <ion-header>
 
+    <ion-navbar>
+
+      <ion-row *ngIf="userProfile">
+        <ion-col id="sideMenuProfilePic">
+          <ion-avatar id="sideMenuImageAvatar" menuToggle start no-lines>
+            <img id="sideMenuImage" [src]="userProfile.photoURL">
+          </ion-avatar>
+        </ion-col>
+
+        <ion-col id="sideMenuNameCol">
+          <ion-title id="sideMenuName"> {{userProfile.displayName}}</ion-title>
+
+
+        </ion-col>
+      </ion-row>
+
+
+
+    </ion-navbar>
+
+  </ion-header>
 
   <ion-content>
-    <ion-item style="background-color: transparent" no-lines>
-
-
-
-
-
-
-      <div *ngIf="userProfile">
-        <div text-center>
-
-
-          <ion-avatar menuToggle no-lines>
-            <!-- <ion-text-avatar [ngStyle]="{'background-color':getRandomColor()}" *ngIf="isAvatar">{{ initials }}</ion-text-avatar> -->
-            <img style="margin-left: 45%" [src]="userProfile.photoURL">
-
-
-          </ion-avatar>
-        </div>
-        <div text-center padding>
-          <ion-title text-wrap
-            style="white-space: nowrap;font-size:1.3rem !important;margin-right: 0 !important;padding-top: 5px;">
-            {{userProfile.displayName}}</ion-title>
-
-          <!-- <ion-title style="font-size:1.5rem !important;margin-right: 0 !important;">
-            <p style="color:blue">
-              <ion-icon name="create" item-left></ion-icon>Edit Profile
-            </p>
-          </ion-title> -->
-        </div>
-      </div>
-
-    </ion-item>
+  
 
 
     <ion-list no-lines>
@@ -44,7 +35,11 @@
       </ion-item>
 
 
+      <ion-avatar id="chilLogo" onclick="window.open('https://cdarh.org','_system', 'location=yes')">
 
+        <img [src]="'assets/img/chil.png'">
+
+      </ion-avatar>
 
     </ion-list>
 

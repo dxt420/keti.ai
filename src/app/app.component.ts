@@ -16,7 +16,7 @@ import { Storage } from '@ionic/storage';
 
 import { Push } from '@ionic-native/push';
 import { AppUpdate } from '@ionic-native/app-update';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+
 // import { AuthProvider } from '../providers/auth/auth';
 
 import { Network } from '@ionic-native/network';
@@ -55,7 +55,7 @@ export class MyApp {
               public fcm: FCM,
               public alertCtrl:AlertController,
               private appUpdate: AppUpdate,
-              public http: HttpClient,
+            
               public network: Network ,
 
               public networkProvider: NetworkProvider ) {
@@ -154,35 +154,37 @@ export class MyApp {
           });
 
 
-          firebase.auth().currentUser.getIdToken()
-              .then(authToken => {
+          // firebase.auth().currentUser.getIdToken()
+          //     .then(authToken => {
 
 
 
-                var headerDict = {
-                  'Content-Type': 'application/json',
-                  'Access-Control-Allow-Headers': 'Content-Type',
-                  'Access-Control-Allow-Origin':'*',
-                  'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
-                  'Authorization': 'Bearer ' + authToken
-                };
+          //       var headerDict = {
+          //         'Content-Type': 'application/json',
+          //         'Access-Control-Allow-Headers': 'Content-Type',
+          //         'Access-Control-Allow-Origin':'*',
+          //         'Access-Control-Allow-Methods': 'POST, GET, OPTIONS, PUT',
+          //         'Authorization': 'Bearer ' + authToken
+          //       };
 
-                var requestOptions = {
-                  headers: new HttpHeaders(headerDict)
-                };
+          //       var requestOptions = {
+          //         headers: new HttpHeaders(headerDict)
+          //       };
 
-                console.log(authToken)
-
-
-
-                return this.http.post('https://keti-server.herokuapp.com/getUser',{}, requestOptions).toPromise()
+          //       console.log(authToken)
 
 
-              })
-              .catch(error => {
-                console.log('OOPS, error', error)
-              })
-        } else {
+
+          //       return this.http.post('https://keti-server.herokuapp.com/getUser',{}, requestOptions).toPromise()
+
+
+          //     })
+          //     .catch(error => {
+          //       console.log('OOPS, error', error)
+          //     })
+        
+        
+            } else {
           this.rootPage = AuthPage;
           console.log("There's no user here");
         }
@@ -200,10 +202,10 @@ export class MyApp {
       this.pages = [
 
         // { title: 'Send Feedback', component: 'FeedbackPage', icon: "chatboxes" },
-        { title: 'Counselling', component: 'CounsellingPage', icon: "happy" },
-        { title: 'Referral', component: 'ReferralPage', icon: "git-compare" },
-        { title: 'Prescription', component: 'PrescriptionPage', icon: "medkit" },
-        { title: 'Call Me', component: 'CallPage', icon: "call" },
+        // { title: 'Counselling', component: 'CounsellingPage', icon: "happy" },
+        // { title: 'Referral', component: 'ReferralPage', icon: "git-compare" },
+        // { title: 'Prescription', component: 'PrescriptionPage', icon: "medkit" },
+        // { title: 'Call Me', component: 'CallPage', icon: "call" },
 
         { title: 'Settings', component: 'SettingsPage', icon: "settings" },
         { title: 'About', component: 'AboutPage', icon: "information-circle" },
@@ -225,10 +227,7 @@ export class MyApp {
 
 
 
-      fcm.onTokenRefresh().subscribe(token => {
-        console.log('Token refreshed',token);
-      });
-
+   
 
     });
 
@@ -302,7 +301,5 @@ export class MyApp {
 
   }
 
-  signOut() {
-    this.auth.logout();
-  }
+
 }

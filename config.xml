@@ -1,5 +1,5 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget android-versionCode="3" id="com.ai.keti" version="1.0.8" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget android-versionCode="4" id="com.ai.keti" version="1.0.9" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
     <name>Keti </name>
     <description>A.I assistant for Reproductive Cancer</description>
     <author email="omonaderrick25@gmail.com" href="#">Derrick Omona</author>
@@ -101,4 +101,9 @@
     <plugin name="cordova-plugin-file" spec="^6.0.1" />
     <engine name="browser" spec="5.0.4" />
     <engine name="ios" spec="4.5.5" />
+    <universal-links>
+        <host name="chanjia-e9ddb.firebaseapp.com" scheme="https">
+            <path url="/__/auth/callback" />
+        </host>
+    </universal-links>
 </widget>

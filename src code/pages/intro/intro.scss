@@ -1,0 +1,26 @@
+page-intro {
+
+  ion-slide img {
+     height: 5vh !important;
+     width: auto !important;
+   }
+
+   ion-content {
+     background-image: url('../assets/img/cell.gif');
+     background-repeat: no-repeat;
+
+     background-size: 110% 110%;
+     background-position: center center;
+     animation: shrink 5s infinite alternate;
+ }
+ @keyframes shrink {
+   0% {
+     background-size: 110% 110%;
+
+   }
+   100% {
+     background-size: 100% 100%;
+
+   }
+ }
+}

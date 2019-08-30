@@ -1,0 +1,26 @@
+page-interprete {
+
+  #jj img {
+    height: auto;
+
+    border-radius: 50%;
+  }
+
+  #jj {
+
+
+
+    padding: 0;
+    width: 100%;
+  }
+  ion-col {
+
+    &:first-of-type {
+
+      flex: 0 0 40px;
+
+    }
+  }
+
+
+}

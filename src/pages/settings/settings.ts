@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
 import { AuthProvider } from '../../providers/auth/auth';
+import firebase from 'firebase';
 // import { Facebook } from '@ionic-native/facebook';
 
 /**
@@ -22,6 +23,7 @@ export class SettingsPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
+    public alertCtrl: AlertController,
     public auth: AuthProvider) {
 
 
@@ -40,9 +42,46 @@ export class SettingsPage {
 
   }
 
- public logout(){
-   this.auth.logout();
- }
+  public logout(){
+
+    let alert = this.alertCtrl.create({
+      title: 'Confirm Logout',
+      message: 'Do you really want to log out?',
+      buttons: [
+        {
+          text: 'Cancel',
+          role: 'cancel',
+          handler: () => {
+            console.log('Cancel clicked');
+          }
+        },
+        {
+          text: 'Confirm',
+          handler: () => {
+            if(this.auth.user.providerData[0].providerId == "google.com"){
+              this.auth.logoutGoogle();
+
+            }else if(this.auth.user.providerData[0].providerId == "facebook.com"){
+              this.auth.logoutFacebook();
+
+            }else{
+              firebase.auth().signOut();
+
+            }
+
+
+
+          }
+        }
+      ]
+    });
+
+
+
+
+    alert.present();
+
+  }
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad SettingsPage');
